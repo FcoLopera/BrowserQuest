@@ -1,10 +1,11 @@
 
-var cls = require('./lib/class'),
+const Class = require('./lib/class'),
     _ = require('underscore'),
     Utils = require('./utils'),
-    Types = require("../../shared/js/gametypes");
+    Types = require("../../shared/js/gametypes"),
+    Mob = require("./mob");
 
-module.exports = Area = cls.Class.extend({
+const Area = Class.extend({
     init: function(id, x, y, width, height, world) {
         this.id = id;
         this.x = x;
@@ -68,3 +69,5 @@ module.exports = Area = cls.Class.extend({
         this.empty_callback = callback;
     }
 });
+
+module.exports = Area;

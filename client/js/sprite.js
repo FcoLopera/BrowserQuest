@@ -1,7 +1,6 @@
-
 define(['jquery', 'animation', 'sprites'], function($, Animation, sprites) {
 
-    var Sprite = Class.extend({
+    const Sprite = Class.extend({
         init: function(name, scale) {
         	this.name = name;
         	this.scale = scale;

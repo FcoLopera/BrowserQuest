@@ -1,7 +1,6 @@
-
 define(function() {
 
-    var Entity = Class.extend({
+    const Entity = Class.extend({
         init: function(id, kind) {
     	    var self = this;
 	    

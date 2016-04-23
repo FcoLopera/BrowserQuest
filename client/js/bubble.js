@@ -1,7 +1,6 @@
-
 define(['jquery', 'timer'], function($, Timer) {
 
-    var Bubble = Class.extend({
+    const Bubble = Class.extend({
         init: function(id, element, time) {
             this.id = id;
             this.element = element;

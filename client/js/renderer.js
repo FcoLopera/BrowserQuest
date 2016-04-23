@@ -1,8 +1,7 @@
-
 define(['camera', 'item', 'character', 'player', 'timer'], 
 function(Camera, Item, Character, Player, Timer) {
 
-    var Renderer = Class.extend({
+    const Renderer = Class.extend({
         init: function(game, canvas, background, foreground) {
             this.game = game;
             this.context = (canvas && canvas.getContext) ? canvas.getContext("2d") : null;

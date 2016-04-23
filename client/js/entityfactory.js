@@ -1,7 +1,6 @@
-
 define(['mobs', 'items', 'npcs', 'warrior', 'chest'], function(Mobs, Items, NPCs, Warrior, Chest) {
 
-    var EntityFactory = {};
+    const EntityFactory = {};
 
     EntityFactory.createEntity = function(kind, id, name) {
         if(!kind) {

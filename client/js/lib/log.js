@@ -1,5 +1,5 @@
 
-var Logger = function(level) {
+const Logger = function(level) {
     this.level = level;
 };
 

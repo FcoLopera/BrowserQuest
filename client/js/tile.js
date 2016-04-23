@@ -1,10 +1,9 @@
-
 define(function() {
     
-    var Tile = Class.extend({
+    const Tile = Class.extend({
     });
 
-    var AnimatedTile = Tile.extend({
+    const AnimatedTile = Tile.extend({
         init: function(id, length, speed, index) {
             this.startId = id;
         	this.id = id;

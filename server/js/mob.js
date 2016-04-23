@@ -1,13 +1,13 @@
 
-var cls = require("./lib/class"),
-    _ = require("underscore"),
-    Messages = require("./message"),
-    Properties = require("./properties"),
-    Types = require("../../shared/js/gametypes");
+const _ = require('underscore'),
+    Messages = require('./message'),
+    Properties = require('./properties'),
+    Character = require('./character'),
+    Utils = require('./utils');
 
-module.exports = Mob = Character.extend({
+const Mob = Character.extend({
     init: function(id, kind, x, y) {
-        this._super(id, "mob", kind, x, y);
+        this._super(id, 'mob', kind, x, y);
         
         this.updateHitPoints();
         this.spawningX = x;
@@ -102,14 +102,16 @@ module.exports = Mob = Character.extend({
     },
     
     handleRespawn: function() {
-        var delay = 30000,
-            self = this;
+        const delay = 30000,
+            self = this,
+            MobArea = require('./mobarea');
         
         if(this.area && this.area instanceof MobArea) {
             // Respawn inside the area if part of a MobArea
             this.area.respawnMob(this, delay);
         }
         else {
+            const ChestArea = require('./chestarea');
             if(this.area && this.area instanceof ChestArea) {
                 this.area.removeFromArea(this);
             }
@@ -161,3 +163,5 @@ module.exports = Mob = Character.extend({
         return Utils.distanceTo(x, y, this.spawningX, this.spawningY);
     }
 });
+
+module.exports = Mob;

@@ -1,7 +1,7 @@
 
 define(function() {
 
-    var Transition = Class.extend({
+    const Transition = Class.extend({
         init: function() {
             this.startValue = 0;
             this.endValue = 0;

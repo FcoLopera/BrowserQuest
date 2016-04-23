@@ -1,5 +1,4 @@
-
-var cls = require("./lib/class"),
+const Class = require("./lib/class"),
     _ = require("underscore"),
     Log = require('log'),
     Entity = require('./entity'),
@@ -19,7 +18,7 @@ var cls = require("./lib/class"),
 
 // ======= GAME SERVER ========
 
-module.exports = World = cls.Class.extend({
+const World = Class.extend({
     init: function(id, maxPlayers, websocketServer) {
         var self = this;
 
@@ -309,8 +308,7 @@ module.exports = World = cls.Class.extend({
     },
     
     processQueues: function() {
-        var self = this,
-            connection;
+        var    connection;
 
         for(var id in this.outgoingQueues) {
             if(this.outgoingQueues[id].length > 0) {
@@ -352,7 +350,7 @@ module.exports = World = cls.Class.extend({
         this.players[player.id] = player;
         this.outgoingQueues[player.id] = [];
         
-        //log.info("Added player : " + player.id);
+        log.info("Added player : " + player.id);
     },
     
     removePlayer: function(player) {
@@ -360,6 +358,7 @@ module.exports = World = cls.Class.extend({
         this.removeEntity(player);
         delete this.players[player.id];
         delete this.outgoingQueues[player.id];
+        log.info("Removed player : " + player.id);
     },
     
     addMob: function(mob) {
@@ -854,3 +853,5 @@ module.exports = World = cls.Class.extend({
         this.pushBroadcast(new Messages.Population(this.playerCount, totalPlayers ? totalPlayers : this.playerCount));
     }
 });
+
+module.exports = World;

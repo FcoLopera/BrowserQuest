@@ -1,8 +1,8 @@
 
-var cls = require("./lib/class"),
-    _ = require("underscore");
+const _ = require("underscore"),
+    Class = require("./lib/class");
 
-module.exports = Metrics = Class.extend({
+const Metrics = Class.extend({
     init: function(config) {
         var self = this;
         
@@ -74,3 +74,5 @@ module.exports = Metrics = Class.extend({
         });
     }
 });
+
+module.exports = Metrics;

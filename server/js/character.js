@@ -1,11 +1,11 @@
-
-var cls = require("./lib/class"),
+const cls = require("./lib/class"),
     Messages = require("./message"),
     Utils = require("./utils"),
     Properties = require("./properties"),
-    Types = require("../../shared/js/gametypes");
+    Types = require("../../shared/js/gametypes"),
+    Entity = require("./entity");
 
-module.exports = Character = Entity.extend({
+const Character = Entity.extend({
     init: function(id, type, kind, x, y) {
         this._super(id, type, kind, x, y);
         
@@ -92,3 +92,5 @@ module.exports = Character = Entity.extend({
         }
     }
 });
+
+module.exports = Character;

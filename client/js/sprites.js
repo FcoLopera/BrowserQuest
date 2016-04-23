@@ -1,4 +1,3 @@
-
 define(['text!../sprites/agent.json',
         'text!../sprites/arrow.json',
         'text!../sprites/axe.json',

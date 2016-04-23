@@ -1,7 +1,6 @@
-
 define(function() {
 
-    var Area = Class.extend({
+    const Area = Class.extend({
         init: function(x, y, width, height) {
             this.x = x;
             this.y = y;

@@ -1,8 +1,7 @@
-
-var cls = require("./lib/class"),
+const Class = require("./lib/class"),
     url = require('url'),
-    wsserver = require("websocket-server"),
-    miksagoConnection = require('websocket-server/lib/ws/connection'),
+    wsserver = require("node-websocket-server"),
+    miksagoConnection = require('node-websocket-server/lib/ws/connection'),
     worlizeRequest = require('websocket').request,
     http = require('http'),
     Utils = require('./utils'),
@@ -17,7 +16,7 @@ module.exports = WS;
 /**
  * Abstract Server and Connection classes
  */
-var Server = cls.Class.extend({
+var Server = Class.extend({
     init: function(port) {
         this.port = port;
     },
@@ -52,7 +51,7 @@ var Server = cls.Class.extend({
 });
 
 
-var Connection = cls.Class.extend({
+var Connection = Class.extend({
     init: function(id, connection, server) {
         this._connection = connection;
         this._server = server;
@@ -166,6 +165,7 @@ WS.MultiVersionWebsocketServer = Server.extend({
                 }
                 catch(e) {
                     console.log("WebSocket Request unsupported by WebSocket-Node: " + e.toString());
+                    console.log("WebSocket Request unsupported by WebSocket-Node: " + e.stack);
                     return;
                 }
             } else {

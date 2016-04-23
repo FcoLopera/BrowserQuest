@@ -1,7 +1,7 @@
 
 define(function() {
 
-    var Timer = Class.extend({
+    const Timer = Class.extend({
         init: function(duration, startTime) {
             this.lastTime = startTime || 0;
             this.duration = duration;

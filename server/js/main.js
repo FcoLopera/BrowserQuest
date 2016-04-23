@@ -1,18 +1,18 @@
-
-var fs = require('fs'),
-    Metrics = require('./metrics');
+const fs = require('fs'),
+    _ = require('underscore'),
+    WorldServer = require('./worldserver'),
+    Log = require('log'),
+    ws = require('./ws'),
+    Metrics = require('./metrics'),
+    Player = require('./player');
 
 
 function main(config) {
-    var ws = require("./ws"),
-        WorldServer = require("./worldserver"),
-        Log = require('log'),
-        _ = require('underscore'),
-        server = new ws.MultiVersionWebsocketServer(config.port),
-        metrics = config.metrics_enabled ? new Metrics(config) : null;
+    var server = new ws.MultiVersionWebsocketServer(config.port),
+        metrics = config.metrics_enabled ? new Metrics(config) : null,
         worlds = [],
-        lastTotalPlayers = 0,
-        checkPopulationInterval = setInterval(function() {
+        lastTotalPlayers = 0;
+        setInterval(function() {
             if(metrics && metrics.isReady) {
                 metrics.getTotalPlayers(function(totalPlayers) {
                     if(totalPlayers !== lastTotalPlayers) {
@@ -32,7 +32,7 @@ function main(config) {
             log = new Log(Log.DEBUG); break;
         case "info":
             log = new Log(Log.INFO); break;
-    };
+    }
     
     log.info("Starting BrowserQuest game server...");
     
@@ -40,6 +40,7 @@ function main(config) {
         var world, // the one in which the player will be spawned
             connect = function() {
                 if(world) {
+                    log.info("player connect");
                     world.connect_callback(new Player(connection, world));
                 }
             };
@@ -95,7 +96,8 @@ function main(config) {
     }
     
     process.on('uncaughtException', function (e) {
-        log.error('uncaughtException: ' + e);
+        log.error('uncaughtException: ' + e );
+        log.error('uncaughtException: ' + e.stack );
     });
 }
 
@@ -122,7 +124,7 @@ function getConfigFile(path, callback) {
 var defaultConfigPath = './server/config.json',
     customConfigPath = './server/config_local.json';
 
-process.argv.forEach(function (val, index, array) {
+process.argv.forEach(function (val, index) {
     if(index === 2) {
         customConfigPath = val;
     }

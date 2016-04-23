@@ -1,7 +1,7 @@
 
 define(['character', 'timer'], function(Character, Timer) {
 
-    var Updater = Class.extend({
+    const Updater = Class.extend({
         init: function(game) {
             this.game = game;
             this.playerAggroTimer = new Timer(1000);
@@ -102,7 +102,7 @@ define(['character', 'timer'], function(Character, Timer) {
                         c.setPosition(x, c.y);
                         g.initAnimatedTiles();
                         g.renderer.renderStaticCanvases();
-                    }
+                    };
                     endFunc = function() {
                         c.setPosition(z.endValue, c.y);
                         g.endZoning();

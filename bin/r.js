@@ -2218,7 +2218,7 @@ var requirejs, require, define;
         context.loaded[moduleName] = false;
         context.scriptCount += 1;
 
-        if (path.existsSync(url)) {
+        if ( fs.exists(url)) {
             contents = fs.readFileSync(url, 'utf8');
 
             contents = req.makeNodeWrapper(contents);

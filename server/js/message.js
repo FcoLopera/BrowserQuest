@@ -1,13 +1,13 @@
 
-var cls = require("./lib/class"),
+var Class = require("./lib/class"),
     _ = require("underscore"),
     Utils = require("./utils"),
     Types = require("../../shared/js/gametypes");
 
-var Messages = {};
+const Messages = {};
 module.exports = Messages;
 
-var Message = cls.Class.extend({
+var Message = Class.extend({
 });
 
 Messages.Spawn = Message.extend({

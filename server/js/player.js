@@ -1,16 +1,18 @@
-
-var cls = require("./lib/class"),
+const cls = require("./lib/class"),
     _ = require("underscore"),
     Messages = require("./message"),
     Utils = require("./utils"),
     Properties = require("./properties"),
     Formulas = require("./formulas"),
-    check = require("./format").check,
-    Types = require("../../shared/js/gametypes");
+    Types = require("../../shared/js/gametypes"),
+    Character = require("./character"),
+    FormatChecker = require('./format'),
+    Chest = require('./chest');
 
-module.exports = Player = Character.extend({
+const Player = Character.extend({
     init: function(connection, worldServer) {
         var self = this;
+        console.log("initPlayer");
         
         this.server = worldServer;
         this.connection = connection;
@@ -28,7 +30,8 @@ module.exports = Player = Character.extend({
             var action = parseInt(message[0]);
             
             log.debug("Received: "+message);
-            if(!check(message)) {
+
+            if(! self.formatChecker.check(message)) {
                 self.connection.close("Invalid "+Types.getMessageTypeAsString(action)+" message format: "+message);
                 return;
             }
@@ -381,3 +384,5 @@ module.exports = Player = Character.extend({
         this.connection.close("Player was idle for too long");
     }
 });
+
+module.exports = Player;

@@ -1,23 +1,25 @@
+const Utils = require('./utils'),
+    Types = require("../../shared/js/gametypes"),
+    Item = require("./item"),
+    _ = require('underscore'),
+    Chest = Item.extend({
+        init: function (id, x, y) {
+            this._super(id, Types.Entities.CHEST, x, y);
+        },
 
-var Utils = require('./utils'),
-    Types = require("../../shared/js/gametypes");
+        setItems: function (items) {
+            this.items = items;
+        },
 
-module.exports = Chest = Item.extend({
-    init: function(id, x, y) {
-        this._super(id, Types.Entities.CHEST, x, y);
-    },
-    
-    setItems: function(items) {
-        this.items = items;
-    },
-    
-    getRandomItem: function() {
-        var nbItems = _.size(this.items),
-            item = null;
+        getRandomItem: function () {
+            var nbItems = _.size(this.items),
+                item = null;
 
-        if(nbItems > 0) {
-            item = this.items[Utils.random(nbItems)];
+            if (nbItems > 0) {
+                item = this.items[Utils.random(nbItems)];
+            }
+            return item;
         }
-        return item;
-    }
-});
+    });
+
+module.exports = Chest;

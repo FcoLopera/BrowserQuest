@@ -1,4 +1,3 @@
-
 define(['lib/astar'], function(AStar) {
 
     var Pathfinder = Class.extend({

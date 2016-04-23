@@ -1,7 +1,6 @@
-
 define(function() {
 
-    var Camera = Class.extend({
+    const Camera = Class.extend({
         init: function(renderer) {
             this.renderer = renderer;
             this.x = 0;

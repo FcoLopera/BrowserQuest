@@ -1,7 +1,7 @@
 
 define(['npc'], function(Npc) {
 
-    var NPCs = {
+    const NPCs = {
 
         Guard: Npc.extend({
             init: function(id) {

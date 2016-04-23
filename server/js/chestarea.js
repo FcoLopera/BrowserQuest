@@ -1,9 +1,9 @@
 
-var Area = require('./area'),
+const Area = require('./area'),
     _ = require('underscore'),
     Types = require("../../shared/js/gametypes");
 
-module.exports = ChestArea = Area.extend({
+const ChestArea = Area.extend({
     init: function(id, x, y, width, height, cx, cy, items, world) {
         this._super(id, x, y, width, height, world);
         this.items = items;
@@ -22,3 +22,5 @@ module.exports = ChestArea = Area.extend({
         }
     }
 });
+
+module.exports = ChestArea;

@@ -1,7 +1,6 @@
-
 define(['mob', 'timer'], function(Mob, Timer) {
 
-    var Mobs = {
+    const Mobs = {
         Rat: Mob.extend({
             init: function(id) {
                 this._super(id, Types.Entities.RAT);

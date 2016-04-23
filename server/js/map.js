@@ -1,18 +1,18 @@
 
-var cls = require('./lib/class')
+var Class = require('./lib/class'),
     path = require('path'),
     fs = require('fs'),
     _ = require('underscore'),
     Utils = require('./utils'),
     Checkpoint = require('./checkpoint');
 
-module.exports = Map = cls.Class.extend({    
+const Map = Class.extend({
     init: function(filepath) {
     	var self = this;
     
     	this.isLoaded = false;
     
-    	path.exists(filepath, function(exists) {
+    	fs.exists(filepath, function(exists) {
             if(!exists) {
                 log.error(filepath + " doesn't exist.");
                 return;
@@ -63,7 +63,7 @@ module.exports = Map = cls.Class.extend({
                 return 0;
             }
             return (num % w == 0) ? w - 1 : (num % w) - 1;
-        }
+        };
     
         tileNum -= 1;
         x = getX(tileNum + 1, this.width);
@@ -216,3 +216,5 @@ var pos = function(x, y) {
 var equalPositions = function(pos1, pos2) {
     return pos1.x === pos2.x && pos2.y === pos2.y;
 };
+
+module.exports = Map;

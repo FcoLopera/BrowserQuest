@@ -1,7 +1,7 @@
 
 define(function() {
 
-    var Animation = Class.extend({
+    const Animation = Class.extend({
         init: function(name, length, row, width, height) {
             this.name = name;
         	this.length = length;

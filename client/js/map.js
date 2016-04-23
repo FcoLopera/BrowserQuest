@@ -1,7 +1,6 @@
-
 define(['jquery', 'area'], function($, Area) {
     
-    var Map = Class.extend({
+    const Map = Class.extend({
         init: function(loadMultiTilesheets, game) {
             this.game = game;
         	this.data = [];

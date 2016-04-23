@@ -1,7 +1,6 @@
-
 define(function() {
 
-    var InfoManager = Class.extend({
+    const InfoManager = Class.extend({
         init: function(game) {
             this.game = game;
             this.infos = {};

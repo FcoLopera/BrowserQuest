@@ -1,7 +1,6 @@
+define(function () {
 
-define(function() {
-
-    var AStar = (function () {
+    const AStar = (function () {
 
         /**
          * A* (A-Star) algorithm for a path finder
@@ -10,13 +9,13 @@ define(function() {
          */
 
         function diagonalSuccessors($N, $S, $E, $W, N, S, E, W, grid, rows, cols, result, i) {
-            if($N) {
-                $E && !grid[N][E] && (result[i++] = {x:E, y:N});
-                $W && !grid[N][W] && (result[i++] = {x:W, y:N});
+            if ($N) {
+                $E && !grid[N][E] && (result[i++] = {x: E, y: N});
+                $W && !grid[N][W] && (result[i++] = {x: W, y: N});
             }
-            if($S){
-                $E && !grid[S][E] && (result[i++] = {x:E, y:S});
-                $W && !grid[S][W] && (result[i++] = {x:W, y:S});
+            if ($S) {
+                $E && !grid[S][E] && (result[i++] = {x: E, y: S});
+                $W && !grid[S][W] && (result[i++] = {x: W, y: S});
             }
             return result;
         }
@@ -26,13 +25,13 @@ define(function() {
             $S = S < rows;
             $E = E < cols;
             $W = W > -1;
-            if($E) {
-                $N && !grid[N][E] && (result[i++] = {x:E, y:N});
-                $S && !grid[S][E] && (result[i++] = {x:E, y:S});
+            if ($E) {
+                $N && !grid[N][E] && (result[i++] = {x: E, y: N});
+                $S && !grid[S][E] && (result[i++] = {x: E, y: S});
             }
-            if($W) {
-                $N && !grid[N][W] && (result[i++] = {x:W, y:N});
-                $S && !grid[S][W] && (result[i++] = {x:W, y:S});
+            if ($W) {
+                $N && !grid[N][W] && (result[i++] = {x: W, y: N});
+                $S && !grid[S][W] && (result[i++] = {x: W, y: S});
             }
             return result;
         }
@@ -41,7 +40,7 @@ define(function() {
             return result;
         }
 
-        function successors(find, x, y, grid, rows, cols){
+        function successors(find, x, y, grid, rows, cols) {
             var
                 N = y - 1,
                 S = y + 1,
@@ -53,11 +52,11 @@ define(function() {
                 $W = W > -1 && !grid[y][W],
                 result = [],
                 i = 0
-            ;
-            $N && (result[i++] = {x:x, y:N});
-            $E && (result[i++] = {x:E, y:y});
-            $S && (result[i++] = {x:x, y:S});
-            $W && (result[i++] = {x:W, y:y});
+                ;
+            $N && (result[i++] = {x: x, y: N});
+            $E && (result[i++] = {x: E, y: y});
+            $S && (result[i++] = {x: x, y: S});
+            $W && (result[i++] = {x: W, y: y});
             return find($N, $S, $E, $W, N, S, E, W, grid, rows, cols, result, i);
         }
 
@@ -69,7 +68,7 @@ define(function() {
             var
                 x = start.x - end.x,
                 y = start.y - end.y
-            ;
+                ;
             return f2(x * x + y * y);
         }
 
@@ -86,11 +85,11 @@ define(function() {
                 f2 = Math.max,
                 list = {},
                 result = [],
-                open = [{x:start[0], y:start[1], f:0, g:0, v:start[0]+start[1]*cols}],
+                open = [{x: start[0], y: start[1], f: 0, g: 0, v: start[0] + start[1] * cols}],
                 length = 1,
                 adj, distance, find, i, j, max, min, current, next
-            ;
-            end = {x:end[0], y:end[1], v:end[0]+end[1]*cols};
+                ;
+            end = {x: end[0], y: end[1], v: end[0] + end[1] * cols};
             switch (f) {
                 case "Diagonal":
                     find = diagonalSuccessors;
@@ -112,21 +111,22 @@ define(function() {
             do {
                 max = limit;
                 min = 0;
-                for(i = 0; i < length; ++i) {
-                    if((f = open[i].f) < max) {
+                for (i = 0; i < length; ++i) {
+                    if ((f = open[i].f) < max) {
                         max = f;
                         min = i;
                     }
-                };
+                }
+                ;
                 current = open.splice(min, 1)[0];
                 if (current.v != end.v) {
                     --length;
                     next = successors(find, current.x, current.y, grid, rows, cols);
-                    for(i = 0, j = next.length; i < j; ++i){
+                    for (i = 0, j = next.length; i < j; ++i) {
                         (adj = next[i]).p = current;
                         adj.f = adj.g = 0;
                         adj.v = adj.x + adj.y * cols;
-                        if(!(adj.v in list)){
+                        if (!(adj.v in list)) {
                             adj.f = (adj.g = current.g + distance(adj, current, f1, f2)) + distance(adj, end, f1, f2);
                             open[length++] = adj;
                             list[adj.v] = 1;
@@ -146,6 +146,6 @@ define(function() {
         return AStar;
 
     }());
-    
+
     return AStar;
 });

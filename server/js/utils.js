@@ -1,5 +1,5 @@
 
-var Utils = {},
+const Utils = {},
     sanitizer = require('sanitizer'),
     Types = require("../../shared/js/gametypes");
 

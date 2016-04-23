@@ -160,6 +160,9 @@ Properties.getArmorLevel = function(kind) {
             return Types.getArmorRank(kind) + 1;
         }
     } catch(e) {
+        console.log(e);
+        console.log(e.stack);
+        
         log.error("No level found for armor: "+Types.getKindAsString(kind));
     }
 };
